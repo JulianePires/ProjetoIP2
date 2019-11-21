@@ -5,8 +5,8 @@ public class Reboque {
 	private static long		nextSerie = 1;
 	private long		serie;
 	private String		placa;
-	private String		tipoCarga;
-	private String		eixos;
+	private Carga		tipoCarga;
+	private int			eixos;
 	private	StatusEnum	status;
 	private double		valorDiaria;
 	/**
@@ -17,7 +17,7 @@ public class Reboque {
 	 * @param status
 	 * @param valorDiaria
 	 */
-	public Reboque(long serie, String placa, String tipoCarga, String eixos, StatusEnum status, double valorDiaria) {
+	public Reboque(long serie, String placa, Carga tipoCarga, int eixos, StatusEnum status, double valorDiaria) {
 		super();
 		this.serie = nextSerie;
 		nextSerie++;
@@ -37,16 +37,16 @@ public class Reboque {
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
-	public String getTipoCarga() {
+	public Carga getTipoCarga() {
 		return tipoCarga;
 	}
-	public void setTipoCarga(String tipoCarga) {
-		this.tipoCarga = tipoCarga;
+	public void setTipoCarga(Carga tipoCarga2) {
+		this.tipoCarga = tipoCarga2;
 	}
-	public String getEixos() {
+	public int getEixos() {
 		return eixos;
 	}
-	public void setEixos(String eixos) {
+	public void setEixos(int eixos) {
 		this.eixos = eixos;
 	}
 	public StatusEnum getStatus() {
@@ -65,7 +65,7 @@ public class Reboque {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((eixos == null) ? 0 : eixos.hashCode());
+		result = prime * result + eixos;
 		result = prime * result + ((placa == null) ? 0 : placa.hashCode());
 		result = prime * result + (int) (serie ^ (serie >>> 32));
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -84,10 +84,7 @@ public class Reboque {
 		if (getClass() != obj.getClass())
 			return false;
 		Reboque other = (Reboque) obj;
-		if (eixos == null) {
-			if (other.eixos != null)
-				return false;
-		} else if (!eixos.equals(other.eixos))
+		if (eixos != other.eixos)
 			return false;
 		if (placa == null) {
 			if (other.placa != null)
@@ -98,14 +95,19 @@ public class Reboque {
 			return false;
 		if (status != other.status)
 			return false;
-		if (tipoCarga == null) {
-			if (other.tipoCarga != null)
-				return false;
-		} else if (!tipoCarga.equals(other.tipoCarga))
+		if (tipoCarga != other.tipoCarga)
 			return false;
 		if (Double.doubleToLongBits(valorDiaria) != Double.doubleToLongBits(other.valorDiaria))
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "|Número de Série: " + serie + " |Placa: " + placa + " |Tipo de Carga: " + tipoCarga + " |Quantidade de Eixos: " + eixos
+				+ " |Status: " + status + " |Valor Diária: R$ " + valorDiaria + "]";
+	}
+	
+	
+	
 
 }

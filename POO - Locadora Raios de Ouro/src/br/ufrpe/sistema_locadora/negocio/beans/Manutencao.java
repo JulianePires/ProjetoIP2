@@ -21,35 +21,39 @@ public class Manutencao {
 	public Manutencao(Reboque reboque, String tipoServico, String descricao, String local, LocalDateTime dataHora,
 			double valor) {
 		super();
-		this.reboque = reboque;
-		this.tipoServico = tipoServico;
-		this.descricao = descricao;
-		this.local = local;
+		setReboque(reboque);
+		setTipoServico(tipoServico);
+		setDescricao(descricao);
+		setLocal(local);
 		this.dataHora = dataHora;
-		this.valor = valor;
+		setValor(valor);
 	}
 	public Reboque getReboque() {
 		return reboque;
 	}
 	public void setReboque(Reboque reboque) {
+		if(reboque != null)
 		this.reboque = reboque;
 	}
 	public String getTipoServico() {
 		return tipoServico;
 	}
 	public void setTipoServico(String tipoServico) {
+		if(tipoServico != null && tipoServico != "")
 		this.tipoServico = tipoServico;
 	}
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
+		if(descricao != null && descricao != "")
 		this.descricao = descricao;
 	}
 	public String getLocal() {
 		return local;
 	}
 	public void setLocal(String local) {
+		if(local != null && local != "")
 		this.local = local;
 	}
 	public LocalDateTime getDataHora() {
@@ -62,12 +66,13 @@ public class Manutencao {
 		return valor;
 	}
 	public void setValor(double valor) {
+		if(valor >= 0)
 		this.valor = valor;
 	}
 	@Override
 	public String toString() {
-		return "Manutencao [reboque=" + reboque + ", tipoServico=" + tipoServico + ", descricao=" + descricao
-				+ ", local=" + local + ", dataHora=" + dataHora + ", valor=" + valor + "]";
+		return "Manutencao: |Número de Série Reboque: " + reboque.getSerie() + " |Serviço: " + tipoServico + " |Descricao: " + descricao
+				+ " |Local: " + local + " Data/Hora: " + dataHora + " |Valor: R$ " + valor;
 	}
 	
 	

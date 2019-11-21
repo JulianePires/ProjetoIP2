@@ -9,15 +9,25 @@ public class Reserva {
 	private Usuario			usuario;
 	private LocalDateTime	dataHoraReserva;
 	private LocalDateTime	dataHoraLimite;
+	private	int				numDiarias;
 	
-	public Reserva(Reboque reboque, Cliente cliente, Usuario usuario, LocalDateTime dataHoraReserva,
-			LocalDateTime dataHoraLimite) {
+	public Reserva(Reboque reboque, Cliente cliente, Usuario usuario, LocalDateTime dataHoraReserva, int numDiarias) {
 		super();
-		this.reboque = reboque;
-		this.cliente = cliente;
-		this.usuario = usuario;
+		setReboque(reboque);
+		setCliente(cliente);
+		setUsuario(usuario);
 		this.dataHoraReserva = dataHoraReserva;
-		this.dataHoraLimite = dataHoraLimite;
+		setNumDiarias(numDiarias);
+		setDataHoraLimite();
+	}
+
+	public int getNumDiarias() {
+		return numDiarias;
+	}
+
+	public void setNumDiarias(int numDiarias) {
+		if(numDiarias > 0)
+		this.numDiarias = numDiarias;
 	}
 
 	public Reboque getReboque() {
@@ -25,7 +35,8 @@ public class Reserva {
 	}
 
 	public void setReboque(Reboque reboque) {
-		this.reboque = reboque;
+		if(reboque != null)
+			this.reboque = reboque;
 	}
 
 	public Cliente getCliente() {
@@ -33,7 +44,8 @@ public class Reserva {
 	}
 
 	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+		if(cliente != null)
+			this.cliente = cliente;
 	}
 
 	public Usuario getUsuario() {
@@ -41,7 +53,8 @@ public class Reserva {
 	}
 
 	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+		if(usuario != null)
+			this.usuario = usuario;
 	}
 
 	public LocalDateTime getDataHoraReserva() {
@@ -56,8 +69,8 @@ public class Reserva {
 		return dataHoraLimite;
 	}
 
-	public void setDataHoraLimite(LocalDateTime dataHoraLimite) {
-		this.dataHoraLimite = dataHoraLimite;
+	public void setDataHoraLimite() {
+		this.dataHoraLimite = this.dataHoraReserva.plusDays(numDiarias);
 	}
 
 	@Override
@@ -67,6 +80,7 @@ public class Reserva {
 		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
 		result = prime * result + ((dataHoraLimite == null) ? 0 : dataHoraLimite.hashCode());
 		result = prime * result + ((dataHoraReserva == null) ? 0 : dataHoraReserva.hashCode());
+		result = prime * result + numDiarias;
 		result = prime * result + ((reboque == null) ? 0 : reboque.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
@@ -96,6 +110,8 @@ public class Reserva {
 				return false;
 		} else if (!dataHoraReserva.equals(other.dataHoraReserva))
 			return false;
+		if (numDiarias != other.numDiarias)
+			return false;
 		if (reboque == null) {
 			if (other.reboque != null)
 				return false;
@@ -111,9 +127,11 @@ public class Reserva {
 
 	@Override
 	public String toString() {
-		return "Reserva [reboque=" + reboque + ", cliente=" + cliente + ", usuario=" + usuario + ", dataHoraReserva="
-				+ dataHoraReserva + ", dataHoraLimite=" + dataHoraLimite + "]";
+		return "Reserva: |Número de Série Reboque: " + reboque.getSerie() + " |Cliente: " + cliente.getNome() + " |Usuario: " + usuario.getNome() + " |Data/Hora Reserva: "
+				+ dataHoraReserva + " |Limite de Entrega: " + dataHoraLimite + " |Diárias: " + numDiarias;
 	}
+
+	
 	
 	
 }

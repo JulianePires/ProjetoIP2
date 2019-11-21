@@ -11,19 +11,16 @@ public class Locacao {
 	private	int				numDiarias;
 	private double			valorTotal;
 	private	double			multa;
-	private	double			valorFinal;
-	
-	public Locacao(Reboque reboque, Cliente cliente, Usuario usuario, LocalDateTime dataHora, int numDiarias,
-			double valorTotal, double multa, double valorFinal) {
+
+	public Locacao(Reboque reboque, Cliente cliente, Usuario usuario, LocalDateTime dataHora, int numDiarias, double multa) {
 		super();
-		this.reboque = reboque;
-		this.cliente = cliente;
-		this.usuario = usuario;
-		this.dataHora = dataHora;
-		this.numDiarias = numDiarias;
-		this.valorTotal = valorTotal;
-		this.multa = multa;
-		this.valorFinal = valorFinal;
+		setReboque(reboque);
+		setCliente(cliente);
+		setUsuario(usuario);
+		setDataHora(dataHora);
+		setNumDiarias(numDiarias);
+		setMulta(multa);
+		setValorTotal();
 	}
 
 	public Reboque getReboque() {
@@ -31,7 +28,8 @@ public class Locacao {
 	}
 
 	public void setReboque(Reboque reboque) {
-		this.reboque = reboque;
+		if(reboque != null)
+			this.reboque = reboque;
 	}
 
 	public Cliente getCliente() {
@@ -39,7 +37,8 @@ public class Locacao {
 	}
 
 	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+		if(cliente != null)
+			this.cliente = cliente;
 	}
 
 	public Usuario getUsuario() {
@@ -47,7 +46,8 @@ public class Locacao {
 	}
 
 	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+		if(usuario != null)
+			this.usuario = usuario;
 	}
 
 	public LocalDateTime getDataHora() {
@@ -55,7 +55,10 @@ public class Locacao {
 	}
 
 	public void setDataHora(LocalDateTime dataHora) {
-		this.dataHora = dataHora;
+		if(dataHora == null) {
+			this.dataHora = LocalDateTime.now();
+		}else
+			this.dataHora = dataHora;
 	}
 
 	public int getNumDiarias() {
@@ -63,15 +66,16 @@ public class Locacao {
 	}
 
 	public void setNumDiarias(int numDiarias) {
-		this.numDiarias = numDiarias;
+		if(numDiarias > 0)
+			this.numDiarias = numDiarias;
 	}
 
 	public double getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setValorTotal() {
+		this.valorTotal = numDiarias*this.reboque.getValorDiaria()+this.multa;
 	}
 
 	public double getMulta() {
@@ -79,22 +83,14 @@ public class Locacao {
 	}
 
 	public void setMulta(double multa) {
-		this.multa = multa;
-	}
-
-	public double getValorFinal() {
-		return valorFinal;
-	}
-
-	public void setValorFinal(double valorFinal) {
-		this.valorFinal = valorFinal;
+		if(multa >= 0)
+			this.multa = multa;
 	}
 
 	@Override
 	public String toString() {
-		return "Locacao [reboque=" + reboque + ", cliente=" + cliente + ", usuario=" + usuario + ", dataHora="
-				+ dataHora + ", numDiarias=" + numDiarias + ", valorTotal=" + valorTotal + ", multa=" + multa
-				+ ", valorFinal=" + valorFinal + "]";
+		return "Locacao: |Número de Série Reboque: " + reboque.getSerie() + " |Cliente: " + cliente.getNome() + " |Funcionário Responsável: " + usuario.getNome() + " |Data/Hora Locação: "
+				+ dataHora + " |Diárias: " + numDiarias + " |Valor Total: R$ " + valorTotal + " |Multa: R$ " + multa;
 	}
 
 	@Override
@@ -109,7 +105,6 @@ public class Locacao {
 		result = prime * result + numDiarias;
 		result = prime * result + ((reboque == null) ? 0 : reboque.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
-		temp = Double.doubleToLongBits(valorFinal);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(valorTotal);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -149,15 +144,13 @@ public class Locacao {
 				return false;
 		} else if (!usuario.equals(other.usuario))
 			return false;
-		if (Double.doubleToLongBits(valorFinal) != Double.doubleToLongBits(other.valorFinal))
-			return false;
 		if (Double.doubleToLongBits(valorTotal) != Double.doubleToLongBits(other.valorTotal))
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
+
+
+
 
 }
