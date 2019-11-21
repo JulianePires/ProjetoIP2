@@ -10,7 +10,7 @@ public interface IRepositorioClientes {
 	void cadastrar(Cliente c) throws ClienteJaExisteException;
 	void atualizar(Cliente c) throws ClienteNaoExisteException;
 	void remover(Cliente c) throws ClienteNaoExisteException;
-	Cliente consultar(String cnh);
+	Cliente consultar(String nome);
 	boolean existe(String nome);
 	List<Cliente> listarTodos();
 	

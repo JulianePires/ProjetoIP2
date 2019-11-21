@@ -40,10 +40,10 @@ public class RepositorioClientes implements IRepositorioClientes{
 	}
 
 	@Override
-	public Cliente consultar(String cnh) {
+	public Cliente consultar(String nome) {
 		Cliente aux = null;
 		for(Cliente c: this.clientes) {
-			if(c.getCnh().equals(cnh))
+			if(c.getNome().equals(nome))
 				aux = c;
 		}
 		return aux;

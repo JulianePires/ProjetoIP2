@@ -1,5 +1,7 @@
 package br.ufrpe.sistema_locadora.negocio;
 
+import java.util.List;
+
 import br.ufrpe.sistema_locadora.dados.IRepositorioClientes;
 import br.ufrpe.sistema_locadora.exceptions.ClienteJaExisteException;
 import br.ufrpe.sistema_locadora.exceptions.ClienteNaoExisteException;
@@ -33,6 +35,15 @@ public class ControladorClientes {
 		}
     }
 	
+	public void atualizar(String nome) throws ClienteNaoExisteException{
+		Cliente c = this.repositorioClientes.consultar(nome);
+		if (c != null) {
+			this.repositorioClientes.atualizar(c);
+		} else {
+			throw new ClienteNaoExisteException(nome);
+		}
+	}
+	
 	public Cliente procurar(String cnh) {
         return this.repositorioClientes.consultar(cnh);
     }
@@ -43,6 +54,10 @@ public class ControladorClientes {
 
     public void remover(Cliente c) throws ClienteNaoExisteException {
         this.repositorioClientes.remover(c);
+    }
+    
+    public List<Cliente> listarClientes(){
+    	return this.repositorioClientes.listarTodos();
     }
 
 }
