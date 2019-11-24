@@ -16,6 +16,13 @@ public class RepositorioReboques implements IRepositorioReboques {
 	private RepositorioReboques() {
 		this.reboques = new ArrayList<>();
 	}
+	
+	public static IRepositorioReboques getInstance() {
+		 if (instance == null) {
+	            instance = new RepositorioReboques();
+	        }
+	        return instance;
+	}
 
 	@Override
 	public void cadastrar(Reboque r) throws ReboqueJaExisteException {

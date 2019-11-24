@@ -16,7 +16,7 @@ public class ControladorClientes {
 	
 	public void cadastrar(Cliente c) throws ClienteJaExisteException{
 		if(c == null) {
-			throw new IllegalArgumentException("Parâmetro Inválido");
+			throw new IllegalArgumentException("Parametro Invalido");
 		} else {
 			if (!this.repositorioClientes.existe(c.getNome())) {
                 this.repositorioClientes.cadastrar(c);

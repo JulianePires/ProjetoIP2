@@ -14,4 +14,5 @@ public interface IRepositorioUsuarios {
 	boolean existe(String nome);
 	List<Usuario> listarTodos();
 	List<Usuario> listarPorCargo(Cargo cargo);
+	void desligarFuncionario(String nome, String login);
 }

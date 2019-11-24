@@ -18,7 +18,7 @@ public class RepositorioReservas implements IRepositorioReservas {
 		this.reservas = new ArrayList<>();
 	}
 	
-	public IRepositorioReservas getInstance() {
+	public static IRepositorioReservas getInstance() {
 		if (instance == null) {
             instance = new RepositorioReservas();
         }

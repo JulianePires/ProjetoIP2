@@ -16,7 +16,7 @@ public class RepositorioManutencoes implements IRepositorioManutencoes {
 		this.manutencoes = new ArrayList<>();
 	}
 	
-	public IRepositorioManutencoes getInstance() {
+	public static IRepositorioManutencoes getInstance() {
 		 if (instance == null) {
 	            instance = new RepositorioManutencoes();
 	        }

@@ -15,7 +15,7 @@ public class RepositorioUsuarios implements IRepositorioUsuarios {
 		this.usuarios = new ArrayList<>();;
 	}
 
-	public IRepositorioUsuarios getInstance() {
+	public static IRepositorioUsuarios getInstance() {
 		if (instance == null) {
 			instance = new RepositorioUsuarios();
 		}
@@ -71,5 +71,10 @@ public class RepositorioUsuarios implements IRepositorioUsuarios {
 		return aux;
 	}
 
-
+	@Override
+	public void desligarFuncionario(String nome, String login) {
+		Usuario u = this.consultar(nome, login);
+		if(u.getCargo().equals(Cargo.FUNCIONARIO))
+			u.setAtivo(false);
+	}
 }

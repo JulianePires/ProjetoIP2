@@ -8,7 +8,7 @@ public class Cliente extends Pessoa {
 	private String		cnh;
 	private	String		telefone;
 	
-	//CONSTRUTOR COM HERANÇA
+	//CONSTRUTOR COM HERANCA
 	public Cliente(String nome, String identificacao, LocalDate dataNasc, String logradouro, String bairro,
 			String cidade, String uf, String cep, String email, String cnh, String telefone) {
 		super(nome, identificacao, dataNasc, logradouro, bairro, cidade, uf, cep, email);

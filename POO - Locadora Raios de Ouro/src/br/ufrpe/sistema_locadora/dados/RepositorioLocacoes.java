@@ -17,6 +17,13 @@ public class RepositorioLocacoes implements IRepositorioLocacoes {
 		super();
 		this.locacoes = new ArrayList<>();
 	}
+	
+	public static IRepositorioLocacoes getInstance() {
+		if (instance == null) {
+            instance = new RepositorioLocacoes();
+        }
+        return instance;
+	}
 
 	@Override
 	public void cadastrar(Locacao l) throws ReboqueIndisponivelException {
