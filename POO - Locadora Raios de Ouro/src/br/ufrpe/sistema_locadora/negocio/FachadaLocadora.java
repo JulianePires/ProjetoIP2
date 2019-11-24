@@ -47,6 +47,7 @@ public class FachadaLocadora {
 		this.controladorUsuarios = new ControladorUsuarios(RepositorioUsuarios.getInstance());
 	}
 	
+	//Padrão singleton implantado
 	public static FachadaLocadora getInstance() {
 		if(instance == null)
 			instance = new FachadaLocadora();
