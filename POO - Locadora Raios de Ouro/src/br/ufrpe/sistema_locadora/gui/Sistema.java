@@ -1,4 +1,4 @@
-package br.ufrpe.sistema_locadora;
+package br.ufrpe.sistema_locadora.gui;
 
 public class Sistema {
 
