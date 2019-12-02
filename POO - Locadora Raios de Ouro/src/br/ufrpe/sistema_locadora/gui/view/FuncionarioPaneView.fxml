@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,13 +10,62 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" type="TabPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FuncionarioPaneController">
   <tabs>
+      <Tab text="Locacao">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutY="140.0" prefHeight="401.0" prefWidth="900.0">
+                     <columns>
+                        <TableColumn prefWidth="69.0" text="Reboque" />
+                        <TableColumn prefWidth="74.0" text="Cliente" />
+                        <TableColumn prefWidth="112.0" text="Usuario" />
+                        <TableColumn prefWidth="74.0" text="Data/Hora Locação" />
+                        <TableColumn prefWidth="110.0" text="Diárias" />
+                        <TableColumn prefWidth="75.0" text="Multa" />
+                        <TableColumn prefWidth="75.0" text="Valor Total" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Button layoutX="46.0" layoutY="70.0" mnemonicParsing="false" onAction="#openEditDialogLocacao" text="Nova Locacao" />
+                  <Button layoutX="173.0" layoutY="70.0" mnemonicParsing="false" onAction="#openEditDialogLocacao" text="Editar" />
+                  <Button layoutX="253.0" layoutY="70.0" mnemonicParsing="false" onAction="#removerLocacao" text="Remover" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Reserva">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutY="140.0" prefHeight="403.0" prefWidth="903.0">
+                     <columns>
+                        <TableColumn prefWidth="69.0" text="Reboque" />
+                        <TableColumn prefWidth="74.0" text="Cliente" />
+                        <TableColumn prefWidth="112.0" text="Usuário" />
+                        <TableColumn prefWidth="74.0" text="Data/Hora Reserva" />
+                        <TableColumn prefWidth="110.0" text="Diárias" />
+                        <TableColumn prefWidth="75.0" text="Data/Hora Limite" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Button layoutX="55.0" layoutY="60.0" mnemonicParsing="false" onAction="#openEditDialogReserva" text="Nova Reserva" />
+                  <Button layoutX="180.0" layoutY="61.0" mnemonicParsing="false" text="Editar" />
+                  <Button layoutX="261.0" layoutY="61.0" mnemonicParsing="false" text="Encerrar" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
     <Tab text="Usuario">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutY="140.0" prefHeight="200.0" prefWidth="600.0">
+                  <TableView layoutY="140.0" prefHeight="405.0" prefWidth="905.0">
                     <columns>
                       <TableColumn fx:id="nomeUsrTable" prefWidth="69.0" text="Nome" />
                       <TableColumn fx:id="identUsrTable" prefWidth="74.0" text="CPF" />
@@ -25,11 +75,14 @@
                         <TableColumn fx:id="cargoUsrTable" prefWidth="75.0" text="Cargo" />
                         <TableColumn fx:id="ativoUsrTable" prefWidth="75.0" text="Ativo" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
-                  <Button fx:id="buscarNomeUsuario" layoutX="175.0" layoutY="64.0" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="200.0" />
-                  <TextField fx:id="nomeUsuario" layoutX="14.0" layoutY="67.0" promptText="Nome" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="418.0" />
-                  <ComboBox fx:id="comboCargo" layoutX="351.0" layoutY="66.0" prefWidth="150.0" promptText="Cargo" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" />
-                  <Button fx:id="listarCargo" layoutX="515.0" layoutY="64.0" mnemonicParsing="false" text="Listar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="30.0" />
+                  <Button layoutX="328.0" layoutY="60.0" mnemonicParsing="false" onAction="#listarPorNomeUsuario" text="Buscar" AnchorPane.bottomAnchor="448.0" AnchorPane.leftAnchor="328.0" />
+                  <TextField fx:id="nomeUsuario" layoutX="32.0" layoutY="63.0" prefHeight="26.0" prefWidth="247.0" promptText="Nome" AnchorPane.bottomAnchor="451.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="621.0" />
+                  <ComboBox fx:id="comboCargo" layoutX="540.0" layoutY="62.0" prefHeight="29.0" prefWidth="211.0" promptText="Cargo" AnchorPane.bottomAnchor="449.0" AnchorPane.leftAnchor="540.0" AnchorPane.rightAnchor="149.0" />
+                  <Button fx:id="listarCargo" layoutX="776.0" layoutY="60.0" mnemonicParsing="false" onAction="#listarPorCargoUsuario" prefHeight="32.0" prefWidth="57.0" text="Listar" AnchorPane.bottomAnchor="448.0" AnchorPane.leftAnchor="776.0" AnchorPane.rightAnchor="67.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -37,7 +90,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutY="140.0" prefHeight="200.0" prefWidth="600.0">
+                  <TableView layoutY="140.0" prefHeight="399.0" prefWidth="905.0">
                      <columns>
                         <TableColumn fx:id="nomeCltTable" prefWidth="69.0" text="Nome" />
                         <TableColumn fx:id="identCltTable" prefWidth="74.0" text="CPF/CNPJ" />
@@ -50,11 +103,11 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button layoutX="517.0" layoutY="69.0" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="517.0" />
-                  <TextField layoutX="346.0" layoutY="72.0" promptText="Nome" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="102.0" />
-                  <Button layoutX="26.0" layoutY="66.0" mnemonicParsing="false" text="Novo" />
-                  <Button layoutX="105.0" layoutY="66.0" mnemonicParsing="false" text="Editar" />
-                  <Button layoutX="181.0" layoutY="66.0" mnemonicParsing="false" text="Remover" />
+                  <Button layoutX="618.0" layoutY="66.0" mnemonicParsing="false" onAction="#listarPorNomeCliente" text="Buscar" AnchorPane.bottomAnchor="442.0" AnchorPane.leftAnchor="618.0" />
+                  <TextField layoutX="346.0" layoutY="69.0" prefHeight="26.0" prefWidth="246.0" promptText="Nome" AnchorPane.bottomAnchor="445.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="308.0" />
+                  <Button layoutX="26.0" layoutY="66.0" mnemonicParsing="false" onAction="#openNewDialogCliente" text="Novo" />
+                  <Button layoutX="105.0" layoutY="66.0" mnemonicParsing="false" onAction="#openEditDialogCliente" text="Editar" />
+                  <Button layoutX="181.0" layoutY="66.0" mnemonicParsing="false" onAction="#removerCliente" text="Remover" />
                </children>
             </AnchorPane>
          </content>
@@ -63,21 +116,23 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutY="140.0" prefHeight="200.0" prefWidth="600.0">
+                  <TableView layoutY="140.0" prefHeight="403.0" prefWidth="907.0">
                      <columns>
-                        <TableColumn prefWidth="69.0" text="Nome" />
-                        <TableColumn prefWidth="74.0" text="CPF" />
-                        <TableColumn prefWidth="112.0" text="Data Nascimento" />
-                        <TableColumn prefWidth="74.0" text="Login" />
-                        <TableColumn prefWidth="110.0" text="Ultimo Acesso" />
-                        <TableColumn prefWidth="75.0" text="Cargo" />
-                        <TableColumn prefWidth="75.0" text="Ativo" />
+                        <TableColumn prefWidth="69.0" text="Série" />
+                        <TableColumn prefWidth="74.0" text="Placa" />
+                        <TableColumn prefWidth="112.0" text="Tipo de Carga" />
+                        <TableColumn prefWidth="74.0" text="Nº de eixos" />
+                        <TableColumn prefWidth="110.0" text="Valor Diária" />
+                        <TableColumn prefWidth="75.0" text="Status" />
                      </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
-                  <Button layoutX="175.0" layoutY="64.0" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="200.0" />
-                  <TextField layoutX="14.0" layoutY="67.0" promptText="Nome" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="418.0" />
-                  <ComboBox layoutX="351.0" layoutY="66.0" prefWidth="150.0" promptText="Cargo" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" />
-                  <Button layoutX="515.0" layoutY="64.0" mnemonicParsing="false" text="Listar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="30.0" />
+                  <Button layoutX="286.0" layoutY="67.0" mnemonicParsing="false" onAction="#buscarReboque" text="Buscar" AnchorPane.bottomAnchor="441.0" AnchorPane.leftAnchor="286.0" />
+                  <TextField layoutX="36.0" layoutY="70.0" prefHeight="26.0" prefWidth="218.0" promptText="Num Serie" AnchorPane.bottomAnchor="444.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="646.0" />
+                  <ComboBox layoutX="431.0" layoutY="69.0" prefHeight="29.0" prefWidth="246.0" promptText="Carga" AnchorPane.bottomAnchor="442.0" AnchorPane.leftAnchor="431.0" AnchorPane.rightAnchor="223.0" />
+                  <Button layoutX="712.0" layoutY="67.0" mnemonicParsing="false" onAction="#listarPorCargaReboque" prefHeight="33.0" prefWidth="54.0" text="Listar" AnchorPane.bottomAnchor="440.0" AnchorPane.leftAnchor="712.0" AnchorPane.rightAnchor="134.0" />
                </children>
             </AnchorPane>
          </content>
@@ -86,70 +141,26 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutY="140.0" prefHeight="200.0" prefWidth="600.0">
+                  <TableView layoutY="140.0" prefHeight="403.0" prefWidth="903.0">
                      <columns>
-                        <TableColumn prefWidth="69.0" text="Nome" />
-                        <TableColumn prefWidth="74.0" text="CPF" />
-                        <TableColumn prefWidth="112.0" text="Data Nascimento" />
-                        <TableColumn prefWidth="74.0" text="Login" />
-                        <TableColumn prefWidth="110.0" text="Ultimo Acesso" />
-                        <TableColumn prefWidth="75.0" text="Cargo" />
-                        <TableColumn prefWidth="75.0" text="Ativo" />
+                        <TableColumn prefWidth="69.0" text="Reboque" />
+                        <TableColumn prefWidth="74.0" text="Tipo Serviço" />
+                        <TableColumn prefWidth="112.0" text="Descrição" />
+                        <TableColumn prefWidth="74.0" text="Local" />
+                        <TableColumn prefWidth="110.0" text="Data/Hora" />
+                        <TableColumn prefWidth="75.0" text="Valor" />
                      </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
-                  <Button layoutX="175.0" layoutY="64.0" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="200.0" />
-                  <TextField layoutX="14.0" layoutY="67.0" promptText="Nome" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="418.0" />
-                  <ComboBox layoutX="351.0" layoutY="66.0" prefWidth="150.0" promptText="Cargo" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" />
-                  <Button layoutX="515.0" layoutY="64.0" mnemonicParsing="false" text="Listar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="30.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Locacao">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView layoutY="140.0" prefHeight="200.0" prefWidth="600.0">
-                     <columns>
-                        <TableColumn prefWidth="69.0" text="Nome" />
-                        <TableColumn prefWidth="74.0" text="CPF" />
-                        <TableColumn prefWidth="112.0" text="Data Nascimento" />
-                        <TableColumn prefWidth="74.0" text="Login" />
-                        <TableColumn prefWidth="110.0" text="Ultimo Acesso" />
-                        <TableColumn prefWidth="75.0" text="Cargo" />
-                        <TableColumn prefWidth="75.0" text="Ativo" />
-                     </columns>
-                  </TableView>
-                  <Button layoutX="175.0" layoutY="64.0" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="200.0" />
-                  <TextField layoutX="14.0" layoutY="67.0" promptText="Nome" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="418.0" />
-                  <ComboBox layoutX="351.0" layoutY="66.0" prefWidth="150.0" promptText="Cargo" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" />
-                  <Button layoutX="515.0" layoutY="64.0" mnemonicParsing="false" text="Listar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="30.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Reserva">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TableView layoutY="140.0" prefHeight="200.0" prefWidth="600.0">
-                     <columns>
-                        <TableColumn prefWidth="69.0" text="Nome" />
-                        <TableColumn prefWidth="74.0" text="CPF" />
-                        <TableColumn prefWidth="112.0" text="Data Nascimento" />
-                        <TableColumn prefWidth="74.0" text="Login" />
-                        <TableColumn prefWidth="110.0" text="Ultimo Acesso" />
-                        <TableColumn prefWidth="75.0" text="Cargo" />
-                        <TableColumn prefWidth="75.0" text="Ativo" />
-                     </columns>
-                  </TableView>
-                  <Button layoutX="175.0" layoutY="64.0" mnemonicParsing="false" text="Buscar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="200.0" />
-                  <TextField layoutX="14.0" layoutY="67.0" promptText="Nome" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="418.0" />
-                  <ComboBox layoutX="351.0" layoutY="66.0" prefWidth="150.0" promptText="Cargo" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="100.0" />
-                  <Button layoutX="515.0" layoutY="64.0" mnemonicParsing="false" text="Listar" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="30.0" />
+                  <Button layoutX="225.0" layoutY="68.0" mnemonicParsing="false" onAction="#buscarManutencao" text="Buscar" AnchorPane.bottomAnchor="440.0" AnchorPane.leftAnchor="225.0" />
+                  <ComboBox layoutX="417.0" layoutY="70.0" prefHeight="29.0" prefWidth="258.0" promptText="Reboque" AnchorPane.bottomAnchor="441.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="225.0" />
+                  <Button layoutX="704.0" layoutY="68.0" minWidth="52.0" mnemonicParsing="false" onAction="#listarPorReboqueManutencao" prefHeight="32.0" prefWidth="58.0" text="Listar" AnchorPane.bottomAnchor="440.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="138.0" />
+                  <DatePicker layoutX="14.0" layoutY="71.0" promptText="Data" />
                </children>
             </AnchorPane>
          </content>
       </Tab>
   </tabs>
-</TabPane>
+</fx:root>

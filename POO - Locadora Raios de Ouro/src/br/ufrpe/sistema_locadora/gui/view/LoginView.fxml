@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginPaneController">
    <children>
       <PasswordField fx:id="idSenha" alignment="CENTER" layoutX="169.0" layoutY="252.0" prefHeight="30.0" prefWidth="260.0" promptText="Password" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="169.0" />
       <TextField fx:id="idLogin" alignment="CENTER" layoutX="226.0" layoutY="175.0" prefHeight="30.0" prefWidth="260.0" promptText="Login" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="169.0" />
-      <Button layoutX="274.0" layoutY="354.0" mnemonicParsing="false" text="Login" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="274.0" />
+      <Button layoutX="274.0" layoutY="354.0" mnemonicParsing="false" onAction="#doLogin" text="Login" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="274.0" />
       <Label alignment="CENTER" layoutX="127.0" layoutY="89.0" prefHeight="30.0" prefWidth="345.0" text="LOCADORA RAIOS DE OURO" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="128.0">
          <font>
             <Font name="Calibri" size="25.0" />
          </font>
       </Label>
    </children>
-</AnchorPane>
+</fx:root>
